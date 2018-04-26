@@ -1,0 +1,656 @@
+<nav class="navbar navbar-default" style="background-color: #E74C3C; margin-bottom:0% ">
+  <div class="container-fluid">
+    <div class="navbar-header ">
+      <h3>
+              <ol class="breadcrumb"  style="background-color: #E74C3C">
+                <li><a style="color: #ECF0F1; text-decoration: none;" href="" onclick="irPacientes()">Pacientes</a></li>
+                <li class="active" style="color: #ECF0F1;" id="nombreapellido"></li>
+              </ol>
+      </h3>
+    </div>
+  </div>
+</nav>
+
+<span class="badge badge-default" style="text-align: left; width:100%; margin-top: 2%;  background-color: #2C3E50; color: #ECF0F1; font-size:150%">Datos Personales</span>
+
+<div class="row" style="margin: 3%">
+                <div class="col-lg-6" id="columna1">
+                          <li class="list-group-item" id="dni"></li>
+                          <li class="list-group-item" id="nombreapellido2"></li>
+                          <li class="list-group-item" id="fechanacimiento"></li>
+                </div>
+                <div class="col-lg-6" id="columna2">
+                          <li class="list-group-item" id="direccion"></li>
+                          <li class="list-group-item" id="telefono" ></li>
+                </div>
+        </ul>
+        
+</div>
+
+
+<span class="badge badge-default" style="text-align: left; width:100%; margin-top: 2%; margin-bottom:3% ; background-color: #2C3E50; color: #ECF0F1; font-size:150%">Tratamientos</span>
+
+<div class="row">
+        <div class="col-lg-8" style="margin-left: 0%">
+                  <div class="input-group">
+                     <input type="text" id="busTratamiento" class="form-control" name="bus" onkeyup="cargarResultadoXclase('busTratamiento','resultadosTratamientos','tratamiento');" required placeholder="Tratamiento...">
+                    <span class="input-group-btn">
+                      <button class="btn btn-default" type="button" style="background-color: #2980B9; color: #ECF0F1">Buscar</button>
+                    </span>
+                  </div>
+        </div>
+        <div class="col-lg-4">
+                  <button id="botonNuevoTratamiento" class="btn btn-block btn-primary" data-toggle="modal" data-target="#modalNuevoTratamiento" style="background-color: #3498DB; border-color: #3498DB; color: #ECF0F1;"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right: 5%"></span><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></button>
+        </div>
+</div>
+
+  <div class="row" style="margin-top: 3%; padding-left: 2%; padding-right:2%" >
+            <div class="col-lg-12">
+                      <ul class="list-group" id="TratamientosPaciente">
+                      </ul>
+            </div>
+  </div>
+
+
+<!--  *********************************   Modal de carga de tratamientos  *****************************    -->
+<div class="modal fade bd-example-modal-lg" id="modalNuevoTratamiento" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background-color: #ECF0F1">
+
+              <h3 style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%">Alta de Tratamiento</h3>
+
+              <div style="margin: 50px;">
+           <div class="alert alert-danger" id="error" role="alert" style="display:none;">
+          </div>
+
+                <div class="row">
+
+                  <div class="col-md-6">
+
+                          <div class="input-group" style="margin-bottom:15px; padding-top:5px; padding-bottom:5px">
+
+                              <span class="input-group-addon" style="width: 160px;background-color: #3498DB; color:#ECF0F1; border-color: #3498D; padding-top:10px; padding-bottom:10px" id="basic-addon1">Fecha de inicio:</span>
+                            <div class="col-md-" style="padding-right:0px">
+                              <input type="date" id="fechaInicio" name="fechaInicio" style="width:220px; padding-top:5px; padding-bottom:5px" value="">
+                              </div>
+                          </div>
+
+                      <div class="input-group">
+                              <span class="input-group-addon" style="width: 160px;background-color: #3498DB; color:#ECF0F1; border-color: #3498D; padding-top:10px; padding-bottom:10px" id="basic-addon1">Medico:</span>
+                          <div class="col-md-" style="padding-right:0px">
+                               <select class="selectpicker" data-live-search="true" id="selectMedicos" style="margin-top:0px ; width:100%; float:left;" area-hidden="true" name="selectMedicos"></select>
+                          </div>
+                          <!--button type="button" class="btn btn-default" data-toggle="modal" data-target="#modalBuscarMedico"><span class="glyphicon glyphicon-plus"  style="color: #E74C3C" aria-hidden="true"></span></button-->
+                         <!-- <button type="button" id="botonBuscarMedico" onclick="$('#modalNuevoTratamiento').hide();" class="btn btn-default" data-toggle="modal" data-target="#modalBuscarMedico" data-backdrop="static" data-keyboard="false" style="background-color: #3498DB; color:#ECF0F1; border-color: #3498DB; width:53px" id="botonBuscarMedico" name="botonBuscarMedico" aria-label="Left Align">
+                              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                          </button>
+                          -->
+                      </div>
+
+                      <br>
+                      <div class="input-group">
+                          <span class="input-group-addon" style="width: 40%;background-color: #3498DB; color:#ECF0F1; border-color: #3498DB" id="basic-addon1">Numero de sesiones:</span>
+                          <input id="nrosesiones" name="nrosesiones" type="number" min="1" class="form-control" style="width:220px; padding-top:5px; padding-bottom:5px" placeholder="Número de sesiones" aria-describedby="basic-addon1">
+                      </div>
+                      <br>
+
+                      <div class="input-group">
+                          <span class="input-group-addon" style="background-color: #3498DB; color:#ECF0F1; border-color: #3498DB" id="basic-addon1">Tratamiento anterior:</span>
+                        <div class="col-md-" style="padding-right:0px">
+                          <select class="selectpicker" data-live-search="true" id="selectTratamientos"  style=" width:100%"  name="selectTratamientos"></select>
+                        </div>
+                         <!-- <button type="button" id="botonBuscarTratamiento" onclick="$('#modalNuevoTratamiento').hide();" class="btn btn-default" data-toggle="modal" data-target="#modalBuscarTratamiento" data-backdrop="static" data-keyboard="false" style="background-color: #3498DB; color:#ECF0F1; border-color: #3498DB; width:53px" id="botonBuscarTratamiento" name="botonBuscarTratamiento" aria-label="Left Align">
+                              <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                          </button>
+                          -->
+                      </div>
+
+                        <div class="row" style="margin-top: 20px; ">
+                                      <div class="col-md-5" style="padding-right:0px">
+                                            <div class="input-group" style="background-color: #3498DB; border-radius:4px; padding:3px; padding-right: 80px; ">
+                                                    <label  style="font-weight: normal; color: #fff; padding-left: 5px; margin-right:10px;">Aparatos:</label>
+                                                    <!--<input type="checkbox" id="checkboxAparato" class="custom-control-input"><br>
+                                                    -->
+                                            </div>
+                                             <button type="button" class="btn btn-default" onclick="agregarAparato()" style="width:100%;float:left;"><span class="glyphicon glyphicon-plus"  style="color: #E74C3C" aria-hidden="true"></span> Aparato</button>
+                                      </div>
+                                     <div class="col-md-7" style="padding-left:0px; padding-right:0px">
+                                             <div id="contenedorAparatos" ></div>
+                                     </div>
+                        </div>
+
+                  </div>
+
+                  <div class="col-md-6">
+                      <div class="input-group">
+                        <span class="input-group-addon" style="height: 33px;width: 40%;background-color: #3498DB; color:#ECF0F1; border-color: #3498DB" id="basic-addon1">Derivacion medica:</span>
+                        <input id="derivacionMedica" name="derivacionMedica" type="file">
+
+                      </div>
+
+                      <div class="row" style="margin-top: 22px; "><!--VER ACA style=" margin-top:20"-->
+                                    <div class="col-md-5" style="padding-right:0px">
+						<!--div class="input-group" style="background-color: #3498DB; border-radius:4px; padding:3px; padding-right: 50px; "-->
+                                                  <label  style="font-weight: normal;color: #fff; padding-left: 5px; margin-right:0px; background-color: #3498DB; border-radius:4px; padding:7px; padding-right: 74px; margin-bottom:0px">Obra social:</label>
+                                                  <!--<input type="checkbox" id="checkboxObraSocial" class="custom-control-input"><br>
+                                                  -->
+						<!--/div-->
+
+                                    </div>
+                                   <div class="col-md-7" style="padding-left:0px; padding-right:0px">
+                                           <div id="seleccionarObraSocial">
+                                                   <select class="form-control selectpicker" data-live-search="true" id="selectObraSocial" style="width:72%; float:left" name="selectObraSocial"></select>
+                                                    <!-- <button type="button" id="botonBuscarObraSocial" class="btn btn-default" onclick="$('#modalNuevoTratamiento').hide();" data-toggle="modal" data-target="#modalBuscarObraSocial" data-backdrop="static" data-keyboard="false" style="position:fixed;background-color: #3498DB; color:#ECF0F1; border-color: #3498DB; float:right; width:53px" id="botonBuscarObraSocial" name="botonBuscarObraSocial" aria-label="Left Align">
+                                                         <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                                     </button>
+                                                     -->
+                                         </div>
+                                   </div>
+                      </div>
+
+                      <div class="row" style="margin-top: 22px; ">
+                                    <div class="col-md-5" style="padding-right:0px">
+                                        <label  style="font-weight: normal; color: #fff; padding-left: 5px; margin-right:10px; background-color: #3498DB; border-radius:4px; padding:7px; padding-right: 75px; margin-bottom:0px ">Diagnostico:</label>
+                                           <button type="button" class="btn btn-default" onclick="agregarDiagnostico()" style="margin-top:0px ; width:100%; float:left;"><span class="glyphicon glyphicon-plus"  style="color: #E74C3C" aria-hidden="true"></span> Diagnostico</button>
+                                    </div>
+                                   <div class="col-md-7" style="padding-left:0px; padding-right:0px">
+                                           <div class="Diagnostico" title='1'>
+                                               <select class="form-control selectpicker" data-live-search="true" id="selectDiagnostico1" style="width:72%; float:left" name="selectDiagnostico[]"></select>
+                                               <!--<button type="button" onclick="$().botonBuscarDiagnostico(1);$('#modalNuevoTratamiento').hide();" class="btn btn-default" data-toggle="modal" data-backdrop="static" data-keyboard="false" data-target="#modalBuscarDiagnostico" style="position:fixed;background-color: #3498DB; color:#ECF0F1; border-color: #3498DB; width:53px" id="botonBuscarDiagnostico" name="botonBuscarDiagnostico" aria-label="Left Align"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+                                               -->
+                                           </div>
+                                           <div id="contenedorDiagosnticos" style="">
+
+                                           </div>
+                                   </div>
+                      </div>
+
+
+                  </div>
+
+                      <input type="hidden" class="form-control" style="width: 100%" id="idPaciente" nombre="idPaciente" placeholder="Obra Social" aria-describedby="basic-addon1">
+
+                      <input type="hidden" class="form-control" style="width: 100%" id="idTratamiento" nombre="idTratamiento" placeholder="Obra Social" aria-describedby="basic-addon1">
+
+                  <button type="button" class="btn btn-primary" onclick="guardarTratamiento()" style="float: right; margin-right: 10%; margin-top: 10%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Guardar</button>
+
+                </div>
+
+              </div>
+            </div>
+        </div>
+</div>
+
+<!--  *************************************** Modal buscar medico ***************************** -->
+<div class="modal fade bd-example-modal-lg" id="modalBuscarMedico" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background-color: #ECF0F1">
+
+      <h3 style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%" id="tituloModalBuscarMedicos">Buscar Médico</h3>
+
+      <div style="margin: 50px;">
+              <div class="alert alert-danger" id="error" role="alert" style="display:none;text-align: center,"></div>
+
+        <div class="row" id="listarMedicos">
+
+          <div class="col-md-12">
+              <div class="input-group">
+                  <input type="text" id="busMedicos" class="form-control" name="bus" onkeyup="cargarResultadoXclase('busMedicos','resultadoBusquedaMedicos', 'resultadoBusquedaMedicos')" required placeholder="Medico...">
+                  <span class="input-group-btn">
+                    <button id="buscadorMedico" name="buscadorMedico" class="btn btn-default" type="button" style="background-color: #2980B9; color: #ECF0F1">Buscar</button>
+                  </span>
+               </div>
+               <div class="col-md-12">
+                  <ul class="list-group" id="resultado" style="margin-top:20px">
+
+                  </ul>
+              </div>
+
+
+              <button type="button" class="btn btn-primary" onclick="$('#modalNuevoTratamiento').show();" style="float: right; margin-right: 10%; background-color: #2980B9; border-color: #2980B9; color: #ECF0F1" data-dismiss="modal" aria-hidden="true">Seleccionar</button>
+              <button type="button" class="btn btn-primary" onclick="$('#agregarMedico').show();$('#listarMedicos').hide();$('#tituloModalBuscarMedicos').html('Alta de Médico');$('#matriculaMedico').val('');$('#nombreMedico').val('');$('#apellidoMedico').val('')" style="float: right; margin-right: 5%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Alta de Médico</button>
+
+
+          </div>
+        </div>
+
+        <div class="row" id="agregarMedico" style="display:none;">
+
+          <div class="col-md-6">
+
+          <input type="hidden" id="idMedico" name="idMedico" class="form-control" placeholder="Descripción" aria-describedby="basic-addon1">
+
+            <div class="input-group">
+              <span class="input-group-addon"  style="width: 40%;background-color: #3498DB; color:#ECF0F1; border-color: #3498DB" id="basic-addon1">Matricula</span>
+              <input type="number" step=1 min=1 class="form-control"  id="matriculaMedico" placeholder="Matricula" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon"  style="width: 40%;background-color: #2980B9; color:#ECF0F1 ; border-color: #2980B9" id="basic-addon1">Nombre</span>
+              <input type="text" class="form-control" id="nombreMedico"  placeholder="Nombre" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon"   style="width: 40%;background-color: #3498DB; color:#ECF0F1 ; border-color: #3498DB" id="basic-addon1">Apellido</span>
+              <input type="text" class="form-control" id="apellidoMedico" placeholder="Apellido" aria-describedby="basic-addon1">
+            </div>
+
+
+          </div>
+
+          <div class="col-md-6">
+
+
+          </div>
+
+          <button type="button" id="botonGuardarMedico" aria-hidden="true" onclick="guardarMedico();$('#agregarMedico').hide();$('#listarMedicos').show();cargarSelects(1,null);$('#tituloModalBuscarMedicos').html('Buscar Médico'); cargarResultadoBusquedaMedico();" class="btn btn-primary" style="float: right; margin-right: 10%; margin-top: 10%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Guardar</button>
+
+          <button type="button" class="btn btn-primary" onclick="$('#agregarMedico').hide();$('#listarMedicos').show();$('#tituloModalBuscarMedicos').html('Buscar Médico');" style="float: right; margin-right: 10%; margin-top: 10%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Cancelar</button>
+
+        </div>
+
+      </div>
+      </div>
+    </div>
+  </div>
+
+
+<!--  *************************************** Modal buscar obras sociales ***************************** -->
+<div class="modal fade bd-example-modal-lg" id="modalBuscarObraSocial" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background-color: #ECF0F1">
+
+      <h3 style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%">Buscador</h3>
+
+      <div style="margin: 50px;">
+
+
+        <div class="row" id="listarObrasSociales">
+
+          <div class="col-md-12">
+              <div class="input-group">
+                  <input type="text" id="busObrasSociales" class="form-control" name="bus" onkeyup="cargarResultadoXclase('busObrasSociales','resultadoBusquedaObraSociales', 'resultadoBusquedaObraSociales')" required placeholder="Obra Social...">
+                  <span class="input-group-btn">
+                    <button id="buscadorObraSocial" name="buscadorObraSocial" class="btn btn-default" type="button" style="background-color: #2980B9; color: #ECF0F1">Buscar</button>
+                  </span>
+               </div><!-- /input-group -->
+               <div class="col-md-12" style="margin-top:20px">
+                  <ul class="list-group" id="resultadobusquedaobrassoaciales">
+
+                  </ul>
+              </div>
+
+
+              <button type="button" class="btn btn-primary" style="float: right; margin-right: 10%; background-color: #3498DB; border-color: #3498DB; color: #ECF0F1" data-dismiss="modal" onclick="$('#modalNuevoTratamiento').show();" aria-hidden="true">Seleccionar</button>
+
+          </div>
+        </div>
+
+      </div>
+
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  *************************************** Modal buscar diagnosticos ***************************** -->
+<div class="modal fade bd-example-modal-lg" id="modalBuscarDiagnostico" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background-color: #ECF0F1">
+
+      <h3 id="tituloModalBuscarDiagnósticos" style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%">Buscar Diagnosticós</h3>
+
+      <div style="margin: 50px;">
+
+
+        <div class="row" id="listarDiagnosticos">
+
+          <div class="col-md-12">
+              <div class="input-group">
+                  <input type="text" id="busDiagnosticos" class="form-control" name="bus" onkeyup="cargarResultadoXclase('busDiagnosticos','resultadoBusquedaDiagnosticos','resultadoBusquedaDiagnosticos')" required placeholder="Diagnostico...">
+                  <span class="input-group-btn">
+                    <button id="buscadorDiagnostico" name="buscadorDiagnostico" class="btn btn-default" type="button" style="background-color: #2980B9; color: #ECF0F1">Buscar</button>
+                  </span>
+               </div><!-- /input-group -->
+               <div class="col-md-12" style="margin-top:20px">
+                  <ul class="list-group" id="resultadobusquedadiagnosticos">
+
+                  </ul>
+              </div>
+
+
+              <button type="button" class="btn btn-primary" style="float: right; margin-right: 10%; background-color: #3498DB; border-color: #3498DB; color: #ECF0F1" data-dismiss="modal" aria-hidden="true" onclick="$('#modalNuevoTratamiento').show();" >Seleccionar</button>
+              <button type="button" class="btn btn-primary" onclick="$('#agregarDiagnostico').show();$('#listarDiagnosticos').hide();$('#tituloModalBuscarDiagnósticos').html('Alta de Diagnóstico');$('#codigoDiagnostico').val('');$('#descripcionDiagnostico').val('');" style="float: right; margin-right: 5%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Agregar Diagnostico</button>
+
+
+          </div>
+        </div>
+
+        <div class="row" id="agregarDiagnostico" style="display:none;">
+
+          <div class="col-md-6">
+             <input id="idDiagnostico" name="idDiagnostico "type="hidden"  class="form-control" placeholder="ID" aria-describedby="basic-addon1">
+            <div class="input-group">
+              <span class="input-group-addon" style="width: 40%;background-color: #3498DB; color:#ECF0F1; border-color: #3498DB" id="basic-addon1">Codigo</span>
+           <input id="codigoDiagnostico"  name="codigoDiagnostico" vtype="text" class="form-control" placeholder="Codigo" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon" style="width: 40%;background-color: #2980B9; color:#ECF0F1 ; border-color: #2980B9" id="basic-addon1">Descripción</span>
+              <input id="descripcionDiagnostico" name="descripcionDiagnostico" type="text" class="form-control" placeholder="Descripcion" aria-describedby="basic-addon1">
+            </div>
+
+          </div>
+
+          <div class="col-md-6">
+
+          </div>
+
+          <button type="button" id="botonGuardarDiagnostico" aria-hidden="true" class="btn btn-primary" onclick="guardarDiagnostico();$('#agregarDiagnostico').hide(); $('#tituloModalBuscarDiagnosticos').html('Buscar Diagnósticos'); $('#listarDiagnosticos').show(); cargarResultadoBusquedaDiagnostico(1); cargarSelects(null,2);" style="float: right; margin-right: 10%; margin-top: 10%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Guardar</button>
+
+          <button type="button" class="btn btn-primary" onclick="$('#agregarDiagnostico').hide();$('#listarDiagnosticos').show(); $('#tituloModalBuscarDiagnosticos').html('Buscar Diagnósticos');" style="float: right; margin-right: 10%; margin-top: 10%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Cancelar</button>
+
+        </div>
+        </div>
+
+      </div>
+
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!--  *************************************** Modal buscar aparatos ***************************** -->
+<div class="modal fade bd-example-modal-lg" id="modalBuscarAparato" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background-color: #ECF0F1">
+
+      <h3 style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%" id="tituloModalBuscarAparatos">Buscar Aparatos</h3>
+
+      <div style="margin: 50px;">
+
+
+        <div class="row" id="listarAparatos">
+
+          <div class="col-md-12">
+              <div class="input-group">
+                  <input type="text" id="busAparatos" class="form-control" name="bus" onkeyup="cargarResultadoXclase('busAparatos','resultadoBusquedaAparatos','resultadoBusquedaAparatos')" required placeholder="Aparato...">
+                  <span class="input-group-btn">
+                    <button id="buscadorAparato" name="buscadorAparato" class="btn btn-default" type="button" style="background-color: #2980B9; color: #ECF0F1">Buscar</button>
+                  </span>
+               </div><!-- /input-group -->
+               <div class="col-md-12" style="margin-top:20px">
+                  <ul class="list-group" id="resultadobusquedaaparatos">
+
+                  </ul>
+              </div>
+
+
+              <button type="button" class="btn btn-primary" onclick="$('#modalNuevoTratamiento').show();" style="float: right; margin-right: 10%; background-color: #3498DB; border-color: #3498DB; color: #ECF0F1" data-dismiss="modal" aria-hidden="true">Seleccionar</button>
+              <button type="button" class="btn btn-primary" onclick="$('#agregarAparato').show();$('#listarAparatos').hide(); $('#tituloModalBuscarAparatos').html('Alta de Aparato'); $('#descripcionAparato').val('');" style="float: right; margin-right: 5%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Agregar Aparato</button>
+
+          </div>
+        </div>
+
+
+        <div class="row" id="agregarAparato" style="display:none;">
+
+          <div class="col-md-6">
+             <input id="idAparato" name="idAparato" type="hidden"  class="form-control" placeholder="ID" aria-describedby="basic-addon1">
+            <div class="input-group">
+              <span class="input-group-addon" style="width: 40%;background-color: #3498DB; color:#ECF0F1; border-color: #3498DB" id="basic-addon1">Descripcion</span>
+           <input id="descripcionAparato"  name="descripcionAparato" vtype="text" class="form-control" placeholder="Descripcion" aria-describedby="basic-addon1">
+            </div>
+
+          </div>
+
+          <div class="col-md-6">
+
+          </div>
+
+          <button type="button" id="botonGuardarAparato" aria-hidden="true" class="btn btn-primary" onclick="guardarAparato();$('#agregarAparato').hide();  $('#tituloModalBuscarAparatos').html('Buscar Aparatos');  $('#listarAparatos').show(); cargarResultadoBusquedaAparato(1); cargarSelecAparato();  " style="float: right; margin-right: 10%; margin-top: 10%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Guardar</button>
+
+          <button type="button" class="btn btn-primary" onclick="$('#agregarAparato').hide();$('#listarAparatos').show(); $('#tituloModalBuscarAparatos').html('Buscar Aparatos')" style="float: right; margin-right: 10%; margin-top: 10%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Cancelar</button>
+
+        </div>
+        </div>
+
+      </div>
+
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+<!--  *************************************** Modal buscar Tratamientos ***************************** -->
+<div class="modal fade bd-example-modal-lg" id="modalBuscarTratamiento" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+            <div class="modal-content" style="background-color: #ECF0F1">
+                      <h3 style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%">Buscar tratamiento anterior</h3>
+                      <div style="margin: 50px;">
+                                <div class="row" id="listarTratamientos">
+                                  <div class="col-md-12">
+                                      <div class="input-group">
+                                          <input type="text" id="busTratamiento" class="form-control" name="busTratamiento" onkeyup="cargarResultadoXclase('busTratamiento','resultadoBusquedaTratamientos','resultadoBusquedaTratamientos')" required placeholder="Tratamiento...">
+                                          <span class="input-group-btn">
+                                            <button id="buscadorTratamiento" name="buscadorTratamiento" class="btn btn-default" type="button" style="background-color: #2980B9; color: #ECF0F1">Buscar</button>
+                                          </span>
+                                       </div><!-- /input-group -->
+                                       <div class="col-md-12" style="margin-top:20px">
+                                          <ul class="list-group" id="resultadobusquedatratamientos">
+                                          </ul>
+                                      </div>
+                                      <button type="button" class="btn btn-primary" onclick="$('#modalNuevoTratamiento').show();" style="float: right; margin-right: 10%; background-color: #3498DB; border-color: #3498DB; color: #ECF0F1" data-dismiss="modal" aria-hidden="true">Seleccionar</button>
+                                      <button type="button" class="btn btn-primary" onclick="$('#modalNuevoTratamiento').show();" style="float: right; margin-right: 10%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1" data-dismiss="modal" aria-hidden="true">Cancelar</button>
+                                  </div>
+                                </div>
+                        </div>
+               </div>
+      </div>
+</div>
+
+
+<!--  *********************************   Modal de ver el Tratamiento con sus Turnos y mas  *****************************    -->
+<div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modalVerTurnos">
+        <div class="modal-dialog modal-lg">
+                  <div class="modal-content" style="background-color: #ECF0F1">
+                <!-- <form action="api.php" method="post"> -->
+                    <h3 style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%" id="tituloModalTurnos"></h3>
+                      <ul class="nav nav-tabs">
+                                <li class="active"><a data-toggle="tab" href="#verTratamiento">Tratamiento</a></li>
+                      </ul>
+                      <div class="tab-content">
+                                <div id="verTratamiento" class="tab-pane fade in active">
+                                  <!--ACA SE MUESTRA EL TRATAMIENTO-->
+                                  <div style="padding: 3%">
+                                                <div class="row">
+                                                        <div class="col-md-12" id="sesionAnteriorSiguiente" style="padding-bottom: 3%">
+
+                                                        </div>
+                                                        <div class="col-md-12" style="padding-bottom: 3%">
+                                                                <b>Evolución:</b><textarea class="form-control container" rows="5" id="evolucion" style='resize: none'></textarea>
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                                  <b>Diagnostico: </b><li class="list-group-item" id="diagnostico">-</li>
+                                                                  <b>Medico: </b><li class="list-group-item" id="medico">-</li>
+                                                                  <b>Obra Social: </b><li class="list-group-item" id="obraSocial">-</li>
+
+                                                        </div>
+                                                        <div class="col-md-6">
+                                                                  <b>Fecha de Inicio:</b><li class="list-group-item" style="background-color: #3498DB ; color: #ECF0F1 ;" id="fechaDeInicio"></li>
+                                                                 <!-- <b>Fecha de Fin:</b><li class="list-group-item" style="color: #ECF0F1 ;" id="fechaDeFin" >-</li>-->
+                                                                 <b>Cantidad de Sesiones:</b><li class="list-group-item" id="nroSesiones" >-</li>
+                                                                  <b>Derivacion Medica</b><li class="list-group-item" id="derivacionM">-</li>
+                                                                  <!--<b>Sesion Actual:</b><li class="list-group-item" id="sesionActual" >0</li>-->
+                                                        </div>
+
+                                                        <div class="col-md-12" >
+                                                                <b>Aparatos:</b>
+                                                                <ul class="list-group" id="listaAparatos">
+                                                                </ul>
+                                                        </div>
+
+                                                        <input type="hidden" id="tratamientoID">
+                                                        <input type="hidden" id="tratamientoAnterior">
+                                                        <input type="hidden" id="tratamientoSiguiente">
+
+                                                        <div class="col-md-12" style="padding-top: 3%;">
+                                                                <a onclick="actualizarEvolucion()" style="float: right ;background-color:#2C3E50; border-color:#2C3E50"  class="btn btn-lg btn-primary "> <span class="glyphicon glyphicon-floppy-disk"></span></a>
+                                                        </div>
+                                                </div>
+                                        </div>
+                                </div>
+                      </div>
+                </div>
+        </div>
+</div>
+
+
+
+    <!--Modal Para la carge de un turno-->
+<div class="modal fade bd-example-modal-lg" id="modalNuevoTurno" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background-color: #ECF0F1">
+
+    <h3 style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%" >Agregar nuevo turno</h3>
+
+    <div class="row">
+      <div class="col-md-6 col-md-offset-1">
+
+          <input type="hidden" id="idTurno" name="idTurno" class="form-control" aria-describedby="basic-addon1">
+
+            <div class="input-group" style="width:85% !important">
+              <span class="input-group-addon" style="width:9.3em ;background-color: #2980B9; color:#ECF0F1 ; border-color: #2980B9" >Fecha del turno</span>
+              <input id="fechaTurno" type="date" class="form-control" placeholder="dd/mm/yyyy" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon"  style="width: 40%;background-color: #2980B9; color:#ECF0F1 ; border-color: #2980B9" id="basic-addon1">Hora (hh:mm)</span>
+              <input type="text" id="horaTurno" class="form-control"  placeholder="hh:mm" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon"   style="width: 40%;background-color: #3498DB; color:#ECF0F1 ; border-color: #3498DB" id="basic-addon1">Duracion (mins.)</span>
+              <input type="number" class="form-control" id="duracionTurno" aria-describedby="basic-addon1">
+            </div>
+            <div class="alert alert-danger" id="errorNuevoTurno" role="alert" style="display:none;"></div>
+
+          <button type="button" class="btn btn-primary" style="margin:2% 2% 2% 2%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1" onclick="guardarTurno()">Agregar</button>
+        </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript" src="js/panelVerPaciente.js" />
+  <script type="text/javascript" src="js/panelTratamiento.js" />
+  <script type="text/javascript" src="js/panelTurno.js" />
+
+
+
+<script type="text/javascript">
+
+  $("#botonNuevoTratamiento").click(function(){
+  document.getElementById('contenedorDiagosnticos').innerHTML = '';
+
+    cargarSelects(1,1);
+    cargarSelectTratamientos();
+    cargarSelectObraSocial();
+    //$('#contenedorAparatos').empty();
+    //$('#contenedorAparatos').hide();
+    $('#fechaInicio').val("");
+
+    //$("#checkboxAparato").prop("checked",false);
+
+    $("#tituloModal").text("Alta de Obra Social");
+
+    $("#idObraSocial").val('');
+    $("#nombreObraSocial").val('');
+    $("#idTratamiento").val('');
+    $("#derivacionMedica").val(null);
+    $("#nrosesiones").val(null);
+  });
+
+  $("#botonBuscarMedico").click(function(){
+
+
+      $("#selectMedicos").prop('readonly', true);
+      cargarResultadoBusquedaMedico();
+
+  });
+
+  $("#botonBuscarObraSocial").click(function(){
+
+      cargarResultadoBusquedaObraSocial($('#idPaciente').val());
+
+  });
+
+  $.fn.botonBuscarDiagnostico = function (id){
+
+      cargarResultadoBusquedaDiagnostico(id);
+
+  };
+
+    $.fn.botonBuscarAparato = function (id){
+
+      cargarResultadoBusquedaAparato(id);
+
+  };
+
+
+  $("#botonBuscarTratamiento").click(function(){
+
+      cargarResultadoBusquedaTratamiento($('#idPaciente').val(),$('#idTratamiento').val());
+
+  });
+
+  /*$("#checkboxObraSocial").click(function(){
+      if($("#checkboxObraSocial").is(':checked')){
+        $('#seleccionarObraSocial').show();
+          cargarSelectObraSocial($("#selectPacientes").val());
+      }
+      else{
+          $("#selectObraSocial").empty();
+
+      }
+    });
+  $("#checkboxObraSocial").click(function(){
+      if($("#checkboxObraSocial").is(':checked')){
+        $('#seleccionarObraSocial').show();
+          cargarSelectObraSocial($("#selectPacientes").val());
+      }
+      else{
+        $('#seleccionarObraSocial').hide();
+          $("#selectObraSocial").empty();
+
+      }
+    })*/
+
+  /*$("#checkboxAparato").click(function(){
+    if($("#checkboxAparato").is(':checked')){
+      $('#contenedorAparatos').show();
+      agregarAparato();
+    }
+    else{
+      $('#contenedorAparatos').hide();
+      $('#contenedorAparatos').empty();
+    }
+
+  });
+  */
+
+  $("#botonNuevoTurno").click(function(){
+    $("#idTurno").val("");
+    $("#fechaTurno").val("");
+    $("#horaTurno").val("");
+    $("#duracionTurno").val("");
+  });
+
+  $('.selectpicker').selectpicker({});
+
+</script>

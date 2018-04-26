@@ -1,0 +1,156 @@
+<nav class="navbar navbar-default">
+        <div class="container">
+                <ul class="nav navbar-nav">
+                </ul>
+        </div>
+</nav>
+
+<div class="row">
+        <div class="col-lg-3">
+                <a onclick="actualizarPorMes('before')" class="btn btn-default" style="float:left; margin-bottom:20px; background-color: #3498DB; color: #ECF0F1 " id="mesAnt" ><span class="glyphicon glyphicon-chevron-left"></span>Mes anterior</a>
+        </div>
+        <div class="col-lg-2">
+                <a onclick="actualizarPorMes('current')" class="btn btn-default" style="float:left; margin-bottom:20px; background-color: #3498DB; color: #ECF0F1; padding:6px; padding-left:15px; padding-right:15px;  " id="mesActual">Mes actual</a>
+        </div>
+        <div class="col-lg-4">
+                <div class="input-group date" style="float:left; margin-bottom:20px; background-color: #3498DB; color: #ECF0F1 " data-provide="datepicker">
+                        <input type="text" class="form-control" id="datepicker3">
+                        <div class="input-group-addon">
+                                <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                </div>
+               <!--  <div class="input-group date" style="float:left; margin-bottom:25px; background-color: #3498DB; color: #ECF0F1" id="sandbox-container">
+                      <input type="text" class="form-control" id="datepicker3"><span class="input-group-addon"><i class="glyphicon glyphicon-th"></i></span>
+                </div> -->
+        </div>
+        <div class="col-lg-3">
+                <a onclick="actualizarPorMes('after')" class="btn btn-default" style="float:right; margin-bottom:20px; background-color: #3498DB; color:#ECF0F1" id="mesSig">Mes siguiente<span class="glyphicon glyphicon-chevron-right"></span></a>
+        </div>
+</div>
+
+<div class="row">
+
+        <div class="col-lg-12">
+                <h4 style="background-color:#2C3E50; padding:15px; color:#ECF0F1; border-radius:5px" class=" text-center" id="nombreMes"></h4>
+                <input type="hidden" id="fechaGym" name="fechaGym"></input>
+        </div>
+
+        <div class="col-lg-12">
+                <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Nombre..." id="busGimnasio" onkeyup="buscarPersona('busGimnasio','ocultable')">
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" style="background-color: #2980B9; color: #ECF0F1; border-color:#2980B9;">Buscar</button>
+                        </span>
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" title="Mostrar las personas que no realizaron el pago" style="background-color: #3498DB; color: #ECF0F1; border-color:#3498DB;margin-left:10px" onclick="mostrarDeudores()" data-toggle="modal" data-target="#modalMostrarNoPagos">Mostrar No pagados</button>
+                        </span>                       
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" onclick="cargarSelectAgregarPersona()" data-toggle="modal" data-target="#modalCargaPersonaGimnasio" style="background-color: #3498DB; color: #ECF0F1; border-color:#3498DB; margin-left:10px">Agregar persona</button>
+                        </span>
+                </div>
+
+        </div>
+
+        
+                <div class="col-lg-11" style="margin:30px; ">
+                        <ul class="list-group" id="panelGimnasio">
+                                <!-- AQUI SE CARGARAN LOS RESULTADOS  -->
+                        </ul>
+                </div>
+        <!-- -->
+
+</div>
+
+<div class="modal fade bd-example-modal-lg" id="modalCargaPersonaGimnasio" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-sm" style="width:800px">
+                <div class="modal-content" style="background-color: #ECF0F1">
+                        <h3 style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%" id="tituloModal">Seleccionar persona</h3>
+                        <div style="margin: 50px;">
+                                <div class="alert alert-danger" id="error" role="alert" style="display:none;text-align: center,"></div>
+                                <div class="row">
+                                        <div class="col-md-12">
+
+                                                <div class="input-group">
+                                                        <span class="input-group-addon" style="background-color: #3498DB; color:#ECF0F1; border-color: #3498DB" id="basic-addon1">Nombre y Apellido</span>
+                                                        <!--<input type="text" id="nombrePersona" name="nombrePersona" class="form-control" placeholder="Descripción" aria-describedby="basic-addon1" style="width:300px">-->
+                                                        <select class="selectpicker" data-live-search="true" id="selectPersonasGimnasio">
+                                                        </select>
+                                                </div>
+
+                                        </div>
+                                        <button type="button" class="btn btn-primary" onclick="seleccionarParaEsteMes()" style="float: right; margin-right: 10%; margin-top: 5%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Seleccionar</button>
+                                </div>
+                        </div>
+                </div>
+        </div>
+</div>
+
+
+<!--  *************************************** Modal  muestra de clientes que no pagaron ***************************** -->
+<div class="modal fade bd-example-modal-lg" id="modalMostrarNoPagos" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background-color: #ECF0F1">
+
+      <h3 style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%">Personas que no han pagado</h3>
+
+      <div style="margin: 50px;">
+
+
+        <div class="row" id="listarObrasSociales">
+
+          <div class="col-md-12">
+              <div class="input-group">
+                  <input type="text" id="busCliente" class="form-control" name="bus" onkeyup="buscarPersona('busCliente','deudor');" required placeholder="Cliente...">
+                  <span class="input-group-btn">
+                    <button id="buscadorCliente" name="buscadorCleinte" class="btn btn-default" type="button" style="background-color: #2980B9; color: #ECF0F1">Buscar</button>
+                  </span>
+               </div><!-- /input-group -->
+               <div class="col-md-12" style="margin-top:20px">
+                  <ul class="list-group" id="resultadobusquedaclientes">
+
+                  </ul>
+              </div>
+              <div class="row">
+                <button type="button" id="botonCancelar" class="btn btn-primary" style="float: right; margin-right: 2%; margin-top: 2%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Cancelar</button>
+              </div>
+
+          </div>
+        </div>
+
+      </div>
+
+      </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+<script type="text/javascript">
+
+        actualizarPorMes();
+        $('.selectpicker').selectpicker({});
+
+        // $('.input-group.date').datepicker({
+        //         startView: 1,
+        //         minViewMode: 1,
+        //         maxViewMode: 2,
+        //         language: "es"
+        //         autoclose: true
+        //         .on(picker_event, function(e) {
+        //         // `e` here contains the extra attributes
+        //     });
+        //  });
+        var fecha = new Date();
+        $('.input-group.date').datepicker({
+                startView: 1,
+                minViewMode: 1,
+                maxViewMode: 2,
+                language: "es",
+                autoclose: true
+                
+         })
+        //Listen for the change even on the input
+            .change(cambiarFecha)
+            // .on('changeDate', cambiarFecha);
+</script>

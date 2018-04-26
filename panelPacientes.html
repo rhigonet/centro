@@ -1,0 +1,109 @@
+          <nav class="navbar navbar-default">
+            <div class="container">
+              <ul class="nav navbar-nav">
+                <!--<li class=""><a href="#"> Posible opcion 1 <span class="sr-only"></span></a></li>
+                <li><a href="#">Posible opcion 2</a></li>-->
+              </ul>
+            </div>
+          </nav> 
+
+          <div class="col-lg-8" style="margin-left: 0%">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Paciente..." id="busPaciente" onkeyup="cargarResultadoXclase('busPaciente','resultadoPacientes', 'namePacientes')">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" style="background-color: #2980B9; color: #ECF0F1">Buscar</button>
+              </span>
+            </div><!-- /input-group -->
+          </div>
+
+          <div class="col-lg-4">
+            <!-- Large modal -->
+            <button id="botonNuevoPaciente"  class="btn btn-block btn-primary" data-toggle="modal" data-target=".bd-example-modal-lg" style="background-color: #3498DB; border-color: #3498DB; color: #ECF0F1;"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right: 5%"></span><span class="glyphicon glyphicon-user" aria-hidden="true"></span></button>
+          </div>
+
+            <div class="row" style="margin-top: 13%; padding-left: 2%; padding-right:2%" >
+              <div class="col-lg-12">
+
+                <ul class="list-group" id="panelPaciente">
+
+                </ul>
+              </div>
+            </div>
+
+
+
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modalNuevoPaciente">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background-color: #ECF0F1">
+    <!-- <form action="api.php" method="post"> -->
+      <h3 style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%" id="tituloModal"></h3>
+
+      <div style="margin: 50px;">
+
+<div class="alert alert-danger" id="error" role="alert" style="display:none;text-align: center,">
+</div>
+
+        <div class="row"> 
+
+          <div class="col-md-6">
+
+                  <input id="idPaciente"  type="hidden" class="form-control" placeholder="DNI" aria-describedby="basic-addon1">
+
+            <div class="input-group">
+              <span class="input-group-addon" style="width: 40%;background-color: #3498DB; color:#ECF0F1; border-color: #3498DB">DNI</span>
+              <input id="dniPaciente" type="number" step=1 min=1 class="form-control" placeholder="DNI" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon" style="width: 40%;background-color: #2980B9; color:#ECF0F1 ; border-color: #2980B9" >Nombre</span>
+              <input id="nombrePaciente" type="text" class="form-control" placeholder="Nombre" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon" style="width: 40%;background-color: #3498DB; color:#ECF0F1 ; border-color: #3498DB" >Apellido</span>
+              <input id="apellidoPaciente" type="text" class="form-control" placeholder="Apellido" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group" style="width:85% !important">
+              <span class="input-group-addon" style="width:9.3em ;background-color: #2980B9; color:#ECF0F1 ; border-color: #2980B9" >Nacimiento</span>
+              <input id="nacimientoPaciente"   type="date" class="form-control" placeholder="dd/mm/yyyy" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon" style="width: 40%;background-color: #3498DB; color:#ECF0F1 ; border-color: #3498DB" >Telefono</span>
+              <input id="telefonoPaciente" type="text" class="form-control" placeholder="Telefono" aria-describedby="basic-addon1">
+            </div>
+
+          </div>
+
+          <div class="col-md-6">
+
+            <div class="input-group">
+              <span class="input-group-addon" style="width: 40%;background-color: #2980B9; color:#ECF0F1 ; border-color: #2980B9" >Direccion</span>
+              <input id="direccionPaciente" type="text" class="form-control" placeholder="Direccion" aria-describedby="basic-addon1">
+            </div>
+
+            <div >
+              <label class="custom-control custom-checkbox" style="padding: 5%; width: 100%">
+                <input type="checkbox" id="checkboxObraSocial" class="custom-control-input" onclick="$().checkboxObraSocial();" >
+                <span class="custom-control-indicator"></span>
+                <span class="custom-control-description" style="font-weight: normal">Obra Social</span>
+              </label>
+            </div>
+             <div id="agregarObraSocialPaciente">
+             </div>
+          </div>
+
+          <button type="button" id="botonGuardarPaciente" onclick="guardarPaciente()" class="btn btn-primary" style="float: right; margin-right: 10%; margin-top: 10%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Guardar</button>
+
+        </div>
+
+      </div>
+      <!-- </form> -->
+    </div>
+  </div>
+
+
+
+  <script type="text/javascript" src="js/panelPaciente.js" />
+</div>

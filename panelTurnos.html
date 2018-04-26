@@ -1,0 +1,262 @@
+          <nav class="navbar navbar-default">
+            <div class="container">
+              <ul class="nav navbar-nav">
+              </ul>
+            </div>
+          </nav>
+
+        <div class="row">
+                <div class="col-lg-3">
+                        <a href="#" class="btn btn-default" style="float:left; margin-bottom:25px; background-color: #3498DB; color: #ECF0F1 " id="semanaAnt"><span class="glyphicon glyphicon-chevron-left" ></span>  Semana anterior </a>
+                </div>
+                <div class="col-lg-2">
+                        <a href="#" class="btn btn-default" style="float:left; margin-bottom:25px; background-color: #3498DB; color: #ECF0F1 " id="hoy"><span class="glyphicon glyphicon-calendar" ></span>  Hoy </a>
+                </div>
+                <div class="col-lg-4">
+                    <div class="input-group date" style="float:left; margin-bottom:25px; background-color: #3498DB; color: #ECF0F1 " data-provide="datepicker">
+                        <input type="text" class="form-control" id="datepicker2">
+                        <div class="input-group-addon">
+                            <span class="glyphicon glyphicon-th"></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-3">
+                        <a href="#" class="btn btn-default" style="float:right; margin-bottom:25px; background-color: #3498DB; color:#ECF0F1" id="semanaSig">Semana siguiente <span class="glyphicon glyphicon-chevron-right"></span>  </a>
+                </div>
+        </div>
+
+            <div class="row" style="padding-left: 2%; padding-right:2%" >
+              <div class="col-lg-12">
+                  <div class="panel-group" id="listaTurnos">
+
+                        <table class="table table-bordered" id="tablaTurnos" style="background-color: white">
+                                <thead>
+                                        <tr>
+                                                <th>Horario</th>
+                                                <th>Lunes<div id="lunes">01/05/17</div></th><!-- aca es donde tiene que ir el valor del dia en que estamos, es lo unico que hay que mover para que sea conciente del cambio del dia -->
+                                                <th>Martes<div id="martes">02/05/17</div></th>
+                                                <th>Miercoles<div id="miercoles">03/05/17</div></th>
+                                                <th>Jueves<div id="jueves">04/05/17</div></th>
+                                                <th>Viernes<div id="viernes">05/05/17</div></th>
+                                        </tr>
+                                </thead>
+                                <tbody>
+                                        <tr id="08:00:00">
+                                                <td style="max-width:150px; max-height: 100px" >08:00 - 08:30</td>
+                                                <td id="08:00lunes" style="max-width:150px; max-height: 100px" class="horario" class="" onclick="abrirModal('08:00','lunes')"></td>
+                                                <td id="08:00martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('08:00','martes')"></td>
+                                                <td id="08:00miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('08:00','miercoles')"></td>
+                                                <td id="08:00jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('08:00','jueves')"></td>
+                                                <td id="08:00viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('08:00','viernes')"></td>
+                                        </tr>
+                                        <tr id="08:30:00">
+                                                <td style="max-width:150px; max-height: 100px">08:30 - 09:00</td>
+                                                <td id="08:30lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('08:30','lunes')"></td>
+                                                <td id="08:30martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('08:30','martes')"></td>
+                                                <td id="08:30miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('08:30','miercoles')"></td>
+                                                <td id="08:30jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('08:30','jueves')"></td>
+                                                <td id="08:30viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('08:30','viernes')"></td>
+                                        </tr>
+                                        <tr id="09:00:00">
+                                                <td style="max-width:150px; max-height: 100px">09:00 - 09:30</td>
+                                                <td id="09:00lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('09:00','lunes')"></td>
+                                                <td id="09:00martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('09:00','martes')"></td>
+                                                <td id="09:00miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('09:00','miercoles')"></td>
+                                                <td id="09:00jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('09:00','jueves')"></td>
+                                                <td id="09:00viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('09:00','viernes')"></td>
+                                        </tr>
+                                        <tr id="09:30:00">
+                                                <td style="max-width:150px; max-height: 100px">09:30 - 10:00</td>
+                                                <td id="09:30lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('09:30','lunes')"></td>
+                                                <td id="09:30martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('09:30','martes')"></td>
+                                                <td id="09:30miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('09:30','miercoles')"></td>
+                                                <td id="09:30jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('09:30','jueves')"></td>
+                                                <td id="09:30viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('09:30','viernes')"></td>
+                                        </tr>
+                                        <tr id="10:00:00">
+                                                <td style="max-width:150px; max-height: 100px">10:00 - 10::30</td>
+                                                <td id="10:00lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('10:00','lunes')"></td>
+                                                <td id="10:00martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('10:00','martes')"></td>
+                                                <td id="10:00miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('10:00','miercoles')"></td>
+                                                <td id="10:00jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('10:00','jueves')"></td>
+                                                <td id="10:00viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('10:00','viernes')"></td>
+                                        </tr>
+                                        <tr id="10:30:00">
+                                                <td style="max-width:150px; max-height: 100px">10:30 - 11:00</td>
+                                                <td id="10:30lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('10:30','lunes')"></td>
+                                                <td id="10:30martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('10:30','martes')"></td>
+                                                <td id="10:30miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('10:30','miercoles')"></td>
+                                                <td id="10:30jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('10:30','jueves')"></td>
+                                                <td id="10:30viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('10:30','viernes')"></td>
+                                        </tr>
+                                        <tr id="11:00:00">
+                                                <td style="max-width:150px; max-height: 100px">11:00 - 11:30</td>
+                                                <td id="11:00lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('11:00','lunes')"></td>
+                                                <td id="11:00martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('11:00','martes')"></td>
+                                                <td id="11:00miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('11:00','miercoles')"></td>
+                                                <td id="11:00jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('11:00','jueves')"></td>
+                                                <td id="11:00viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('11:00','viernes')"></td>
+                                        </tr>
+                                        <tr id="11:30:00">
+                                                <td style="max-width:150px; max-height: 100px">11:30 - 12:00</td>
+                                                <td id="11:30lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('11:30','lunes')"></td>
+                                                <td id="11:30martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('11:30','martes')"></td>
+                                                <td id="11:30miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('11:30','miercoles')"></td>
+                                                <td id="11:30jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('11:30','jueves')"></td>
+                                                <td id="11:30viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('11:30','viernes')"></td>
+                                        </tr>
+                                        <tr id="12:00:00">
+                                                <td style="max-width:150px; max-height: 100px">12:00 - 12:30</td>
+                                                <td id="12:00lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('12:00','lunes')"></td>
+                                                <td id="12:00martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('12:00','martes')"></td>
+                                                <td id="12:00miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('12:00','miercoles')"></td>
+                                                <td id="12:00jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('12:00','jueves')"></td>
+                                                <td id="12:00viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('12:00','viernes')"></td>
+                                        </tr>
+                                        <tr style="background-color:#dde4e6">
+                                                <td style="max-width:150px; max-height: 100px">-</td>
+                                                <td style="max-width:150px; max-height: 100px"></td>
+                                                <td style="max-width:150px; max-height: 100px"></td>
+                                                <td style="max-width:150px; max-height: 100px"></td>
+                                                <td style="max-width:150px; max-height: 100px"></td>
+                                                <td style="max-width:150px; max-height: 100px"></td>
+                                        </tr>
+                                        <tr id="15:30:00">
+                                                <td style="max-width:150px; max-height: 100px">15:30 - 16:00</td>
+                                                <td id="15:30lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('15:30','lunes')"></td>
+                                                <td id="15:30martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('15:30','martes')"></td>
+                                                <td id="15:30miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('15:30','miercoles')"></td>
+                                                <td id="15:30jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('15:30','jueves')"></td>
+                                                <td id="15:30viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('15:30','viernes')"></td>
+                                        </tr>
+                                        <tr id="16:00:00">
+                                                <td style="max-width:150px; max-height: 100px">16:00 - 16:30</td>
+                                                <td id="16:00lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('16:00','lunes')"></td>
+                                                <td id="16:00martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('16:00','martes')"></td>
+                                                <td id="16:00miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('16:00','miercoles')"></td>
+                                                <td id="16:00jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('16:00','jueves')"></td>
+                                                <td id="16:00viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('16:00','viernes')"></td>
+                                        </tr>
+                                        <tr id="16:30:00">
+                                                <td style="max-width:150px; max-height: 100px">16:30 - 17:00</td>
+                                                <td id="16:30lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('16:30','lunes')"></td>
+                                                <td id="16:30martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('16:30','martes')"></td>
+                                                <td id="16:30miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('16:30','miercoles')"></td>
+                                                <td id="16:30jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('16:30','jueves')"></td>
+                                                <td id="16:30viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('16:30','viernes')"></td>
+                                        </tr>
+                                        <tr id="17:00:00">
+                                                <td style="max-width:150px; max-height: 100px">17:00 - 17:30</td>
+                                                <td id="17:00lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('17:00','lunes')"></td>
+                                                <td id="17:00martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('17:00','martes')"></td>
+                                                <td id="17:00miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('17:00','miercoles')"></td>
+                                                <td id="17:00jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('17:00','jueves')"></td>
+                                                <td id="17:00viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('17:00','viernes')"></td>
+                                        </tr>
+                                        <tr id="17:30:00">
+                                                <td style="max-width:150px; max-height: 100px">17:30 - 18:00</td>
+                                                <td id="17:30lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('17:30','lunes')"></td>
+                                                <td id="17:30martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('17:30','martes')"></td>
+                                                <td id="17:30miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('17:30','miercoles')"></td>
+                                                <td id="17:30jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('17:30','jueves')"></td>
+                                                <td id="17:30viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('17:30','viernes')"></td>
+                                        </tr>
+                                        <tr id="18:00:00">
+                                                <td style="max-width:150px; max-height: 100px">18:00 - 18:30</td>
+                                                <td id="18:00lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('18:00','lunes')"></td>
+                                                <td id="18:00martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('18:00','martes')"></td>
+                                                <td id="18:00miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('18:00','miercoles')"></td>
+                                                <td id="18:00jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('18:00','jueves')"></td>
+                                                <td id="18:00viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('18:00','viernes')"></td>
+                                        </tr>
+                                        <tr id="18:30:00">
+                                                <td style="max-width:150px; max-height: 100px">18:30 - 19:00</td>
+                                                <td id="18:30lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('18:30','lunes')"></td>
+                                                <td id="18:30martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('18:30','martes')"></td>
+                                                <td id="18:30miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('18:30','miercoles')"></td>
+                                                <td id="18:30jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('18:30','jueves')"></td>
+                                                <td id="18:30viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('18:30','viernes')"></td>
+                                        </tr>
+                                        <tr id="19:00:00">
+                                                <td style="max-width:150px; max-height: 100px">19:00 - 19:30</td>
+                                                <td id="19:00lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('19:00','lunes')"></td>
+                                                <td id="19:00martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('19:00','martes')"></td>
+                                                <td id="19:00miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('19:00','miercoles')"></td>
+                                                <td id="19:00jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('19:00','jueves')"></td>
+                                                <td id="19:00viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('19:00','viernes')"></td>
+                                        </tr>
+                                        <tr id="19:30:00">
+                                                <td style="max-width:150px; max-height: 100px">19:30 - 20:00</td>
+                                                <td id="19:30lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('19:30','lunes')"></td>
+                                                <td id="19:30martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('19:30','martes')"></td>
+                                                <td id="19:30miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('19:30','miercoles')"></td>
+                                                <td id="19:30jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('19:30','jueves')"></td>
+                                                <td id="19:30viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('19:30','viernes')"></td>
+                                        </tr>
+                                        <tr id="20:00:00">
+                                                <td style="max-width:150px; max-height: 100px">20:00 - 20:30</td>
+                                                <td id="20:00lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('20:00','lunes')"></td>
+                                                <td id="20:00martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('20:00','martes')"></td>
+                                                <td id="20:00miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('20:00','miercoles')"></td>
+                                                <td id="20:00jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('20:00','jueves')"></td>
+                                                <td id="20:00viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('20:00','viernes')"></td>
+                                        </tr>
+                                        <tr id="20:30:00">
+                                                <td id="08:00lunes" style="max-width:150px; max-height: 100px">20:30 - 21:00</td>
+                                                <td id="20:30lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('20:30','lunes')"></td>
+                                                <td id="20:30martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('20:30','martes')"></td>
+                                                <td id="20:30miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('20:30','miercoles')"></td>
+                                                <td id="20:30jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('20:30','jueves')"></td>
+                                                <td id="20:30viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('20:30','viernes')"></td>
+                                        </tr>
+                                        <tr id="21:00:00">
+                                                <td style="max-width:150px; max-height: 100px">21:00 - 21:30</td>
+                                                <td id="21:00lunes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('21:00','lunes')"></td>
+                                                <td id="21:00martes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('21:00','martes')"></td>
+                                                <td id="21:00miercoles" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('21:00','miercoles')"></td>
+                                                <td id="21:00jueves" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('21:00','jueves')"></td>
+                                                <td id="21:00viernes" style="max-width:150px; max-height: 100px" class="horario" onclick="abrirModal('21:00','viernes')"></td>
+                                        </tr>
+                                </tbody>
+                        </table>
+
+                </div>
+              </div>
+            </div>
+
+
+   <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true" id="modalTurno">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background-color: #ECF0F1">
+      <h3 style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%" id="myModalLabel"></h3>
+
+      <div style="margin: 50px;">
+              <div class="alert alert-danger" id="error" role="alert" style="display:none;text-align: center,"></div>
+
+        <div class="row">
+
+                  <div class="col-md-12 container" style="padding-bottom: 3%">
+                          <b>Descripción</b><textarea class="form-control" rows="6" placeholder="" style='resize:none' id="textoTurno"></textarea>
+                         <input type="hidden" id="horaTurno">
+                         <input type="hidden" id="fechaTurno">
+                    </div>
+
+          <button type="button" id="botonGuardarTurno" onclick="guardarTurno()" class="btn btn-primary" style="float: right; margin-right: 2%; margin-top: 2%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Guardar</button>
+          <button type="button" id="botonBorrarTurno" onclick="eliminarTurno()" class="btn btn-primary hidden" style="float: right; margin-right: 2%; margin-top: 2%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Borrar</button>
+          <button type="button" id="botonCancelar" class="btn btn-primary" style="float: right; margin-right: 2%; margin-top: 2%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Cancelar</button>
+
+    <!-- Campo oculto para almacenar el id del turno actual (nos servira para borrar y modificar el conteniado del turno)-->
+          <input type="hidden" class="form-control" style="width: 100%" id="idTurno" placeholder="Obra Social" aria-describedby="basic-addon1">
+
+        </div>
+
+      </div>
+      <!-- </form> -->
+    </div>
+  </div>
+  </div>
+
+<script type="text/javascript" src="js/panelTurno.js" />
+<script type="text/javascript">
+        diasSemana();
+</script>

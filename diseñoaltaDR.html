@@ -1,0 +1,216 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>Centro de Rehabilitación</title>
+
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <!-- Bootstrap -->
+    <!-- Sweet Alert -->
+    <link href="css/sweetalert.css" rel="stylesheet">
+    <!-- Date-picker -->
+    <link href="css/bootstrap-datepicker.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker.standalone.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker3.min.css" rel="stylesheet">
+    <link href="css/bootstrap-datepicker3.standalone.min.css" rel="stylesheet">
+    <link href="css/bootstrap-select.min.css" rel="stylesheet">
+
+  </head>
+  <body style="background-color: #ECF0F1">
+
+    <header style="margin-bottom: 3%">
+
+    </header>
+
+    <div id="main" class="container">
+
+      <div class="row">
+        <div class="list-group col-md-4">
+          <a href="#" id="" class="list-group-item" style="margin-bottom: 20px; background-color: #2C3E50; color:#ECF0F1"><h3>Menu</h3></a>
+          <a href="#" id="menuPacientes" class="list-group-item active textoMenuActive">Pacientes</a>
+          <input type="hidden" id="menuPacientesId" value="0"></input>
+          <!--ACA HAY QUE HACER CON JS EL ACTIVE Y NO ACTIVE, Y TAMBIEN AUMENTAR LA FUENTE CUANDO CORRESPONDA. SERIA EL h4-->
+          <a href="#" id="menuTurnos" class="list-group-item">Turnos</a>
+          <a href="#" id="menuObrasSociales" class="list-group-item">Obras Sociales</a>
+          <a href="#" id="menuMedicos" class="list-group-item">Médicos</a>
+          <a href="#" id="menuDiagnosticos" class="list-group-item">Diagnósticos</a>
+          <a href="#" id="menuAparatologia" class="list-group-item">Aparatología</a>
+          <a href="#" id="menuGimnasio" class="list-group-item">Gimnasio</a>
+        </div>
+
+        <div class="col-md-8" id="mainPanel">
+
+          <!-- ESTE ES EL PANEL QUE LLEVA EL CONTENIDO QUE SELECCIONAN EN LOS MENU -->
+
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+
+    </footer>
+
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+    <!-- Ajax -->
+    <script src=js/panelPaciente.js></script>
+    <script src=js/panelVerPaciente.js></script>
+    <script src=js/panelDiagnostico.js></script>
+    <script src=js/panelMedico.js></script>
+    <script src=js/panelAparato.js></script>
+    <script src=js/panelObraSocial.js></script>
+    <script src=js/panelTurno.js></script>
+    <script src=js/panelGimnasio.js></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Ventanas Alert BOnitas -->
+    <script src="js/sweetalert.js"></script>
+    <script src="js/bootstrap-datepicker.min.js"></script>
+    <!-- Bootstrap DatePicker -->
+        <script src="js/bootstrap-select.js"></script>
+        <script src="js/i18n/defaults-*.min.js"></script>
+
+  </body>
+
+</html>
+
+
+<script type="text/javascript">
+
+  //por defecto cargo el de pacientes
+  $("#mainPanel").load("panelPacientes.html",$().initPanelPaciente());
+
+
+  $(document).ready(function(){
+
+
+         // $('.input-group.date').datepicker({});
+
+      $("#menuPacientes").click(function(){
+        $("#mainPanel").load("panelPacientes.html",$().initPanelPaciente());
+
+
+        $("#menuPacientes").addClass("active textoMenuActive");
+        $("#menuTurnos").removeClass("active textoMenuActive");
+        $("#menuObrasSociales").removeClass("active textoMenuActive");
+        $("#menuMedicos").removeClass("active textoMenuActive");
+        $("#menuDiagnosticos").removeClass("active textoMenuActive");
+        $("#menuAparatologia").removeClass("active textoMenuActive");
+        $("#menuGimnasio").removeClass("active textoMenuActive");
+        $("#menuTratamientos").removeClass("active textoMenuActive");
+
+      });
+
+      $("#menuTurnos").click(function(){
+        $("#mainPanel").load("panelTurnos.html",$().initPanelTurno());
+
+
+        $("#menuPacientes").removeClass("active textoMenuActive");
+        $("#menuTurnos").addClass("active textoMenuActive");
+        $("#menuObrasSociales").removeClass("active textoMenuActive");
+        $("#menuMedicos").removeClass("active textoMenuActive");
+        $("#menuDiagnosticos").removeClass("active textoMenuActive");
+        $("#menuAparatologia").removeClass("active textoMenuActive");
+        $("#menuGimnasio").removeClass("active textoMenuActive");
+        $("#menuTratamientos").removeClass("active textoMenuActive");
+      });
+
+      $("#menuObrasSociales").click(function(){
+        $("#mainPanel").load("panelObrasSociales.html",$().initPanelObraSocial());
+
+
+        $("#menuPacientes").removeClass("active textoMenuActive");
+        $("#menuTurnos").removeClass("active textoMenuActive");
+        $("#menuObrasSociales").addClass("active textoMenuActive");
+        $("#menuMedicos").removeClass("active textoMenuActive");
+        $("#menuDiagnosticos").removeClass("active textoMenuActive");
+        $("#menuAparatologia").removeClass("active textoMenuActive");
+        $("#menuGimnasio").removeClass("active textoMenuActive");
+        $("#menuTratamientos").removeClass("active textoMenuActive");
+      });
+
+      $("#menuMedicos").click(function(){
+        $("#mainPanel").load("panelMedicos.html",$().initPanelMedico());
+
+
+        $("#menuPacientes").removeClass("active textoMenuActive");
+        $("#menuTurnos").removeClass("active textoMenuActive");
+        $("#menuObrasSociales").removeClass("active textoMenuActive");
+        $("#menuMedicos").addClass("active textoMenuActive");
+        $("#menuDiagnosticos").removeClass("active textoMenuActive");
+        $("#menuAparatologia").removeClass("active textoMenuActive");
+        $("#menuGimnasio").removeClass("active textoMenuActive");
+        $("#menuTratamientos").removeClass("active textoMenuActive");
+      });
+
+      $("#menuDiagnosticos").click(function(){
+        $("#mainPanel").load("panelDiagnosticos.html",$().initPanelDiagnostico());
+
+
+        $("#menuPacientes").removeClass("active textoMenuActive");
+        $("#menuTurnos").removeClass("active textoMenuActive");
+        $("#menuObrasSociales").removeClass("active textoMenuActive");
+        $("#menuMedicos").removeClass("active textoMenuActive");
+        $("#menuDiagnosticos").addClass("active textoMenuActive");
+        $("#menuAparatologia").removeClass("active textoMenuActive");
+        $("#menuGimnasio").removeClass("active textoMenuActive");
+        $("#menuTratamientos").removeClass("active textoMenuActive");
+      });
+
+      $("#menuAparatologia").click(function(){
+        $("#mainPanel").load("panelAparatologia.html",$().initPanelAparato());
+
+
+        $("#menuPacientes").removeClass("active textoMenuActive");
+        $("#menuTurnos").removeClass("active textoMenuActive");
+        $("#menuObrasSociales").removeClass("active textoMenuActive");
+        $("#menuMedicos").removeClass("active textoMenuActive");
+        $("#menuDiagnosticos").removeClass("active textoMenuActive");
+        $("#menuAparatologia").addClass("active textoMenuActive");
+        $("#menuGimnasio").removeClass("active textoMenuActive");
+        $("#menuTratamientos").removeClass("active textoMenuActive");
+      });
+
+      $("#menuGimnasio").click(function(){
+        $("#mainPanel").load("panelGimnasio.html",$().initPanelGimnasio());
+
+        $("#menuPacientes").removeClass("active textoMenuActive");
+        $("#menuTurnos").removeClass("active textoMenuActive");
+        $("#menuObrasSociales").removeClass("active textoMenuActive");
+        $("#menuMedicos").removeClass("active textoMenuActive");
+        $("#menuDiagnosticos").removeClass("active textoMenuActive");
+        $("#menuAparatologia").removeClass("active textoMenuActive");
+        $("#menuGimnasio").addClass("active textoMenuActive");
+        $("#menuTratamientos").removeClass("active textoMenuActive");
+      });
+
+  });
+
+
+  function cargarResultadoXclase(datos,Class, name){
+        var elemenetos = document.getElementsByName(Class);
+        var valores = document.getElementsByName(name);
+        console.log("Entro obras"+datos);
+        var bus = document.getElementById(datos).value;
+        bus = bus.toUpperCase();
+
+        if(bus != ''){
+            for(var i = 0; i < elemenetos.length; i++){
+              console.log("valor de bus: " +bus + "i=" + i);
+              if(valores[i].innerHTML.toUpperCase().indexOf(bus) != -1)
+                  elemenetos[i].style.display = "block";
+              else
+                  elemenetos[i].style.display = "none";
+            }
+        }else{
+            for(var i = 0; i < elemenetos.length; i++)
+                elemenetos[i].style.display = "block";
+        }
+  }
+
+</script>

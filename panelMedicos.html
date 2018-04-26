@@ -1,0 +1,100 @@
+          <nav class="navbar navbar-default">
+            <div class="container">
+              <ul class="nav navbar-nav">
+                <!--<li class=""><a href="#"> Posible opcion 1 <span class="sr-only"></span></a></li>
+                <li><a href="#">Posible opcion 2</a></li>-->
+              </ul>
+            </div>
+          </nav>
+
+          <div class="col-lg-8" style="margin-left: 0%">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="Medico..." id="busMedico" onkeyup="cargarResultadoXclase('busMedico','resultadoMedicos','nameMedico')">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button" style="background-color: #2980B9; color: #ECF0F1">Buscar</button>
+              </span>
+            </div><!-- /input-group -->
+          </div>
+
+          <div class="col-lg-4">
+            <!-- Large modal -->
+            <button class="btn btn-block btn-primary" id="botonNuevoMedico" data-toggle="modal" data-target=".bd-example-modal-lg" style="background-color: #3498DB; border-color: #3498DB; color: #ECF0F1;"><span class="glyphicon glyphicon-plus" aria-hidden="true" style="margin-right: 5%"></span><span class="glyphicon glyphicon-open-file" aria-hidden="true"></span></button>
+          </div>
+
+
+            <div class="row" style="margin-top: 13%; padding-left: 2%; padding-right:2%" >
+              <div class="col-lg-12">
+
+                <ul class="list-group" id="panelMedico">
+
+
+                </ul>
+              </div>
+            </div>
+
+
+  <div class="modal fade bd-example-modal-lg" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content" style="background-color: #ECF0F1">
+
+      <h3 id="tituloModal" style="color: #ECF0F1; background-color: #D94738; padding: 1%; padding-left: 5%">Alta de Medico</h3>
+
+      <div style="margin: 50px;">
+              <div class="alert alert-danger" id="error" role="alert" style="display:none;text-align: center,"></div>
+
+        <div class="row">
+
+          <div class="col-md-6">
+
+          <input type="hidden" id="idMedico" name="idMedico" class="form-control" placeholder="Descripción" aria-describedby="basic-addon1">
+
+            <div class="input-group">
+              <span class="input-group-addon"  style="width: 40%;background-color: #3498DB; color:#ECF0F1; border-color: #3498DB" id="basic-addon1">Matricula</span>
+              <input type="number" step="1" min="1" max="9999" class="form-control"  id="matriculaMedico" placeholder="Matricula" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon"  style="width: 40%;background-color: #2980B9; color:#ECF0F1 ; border-color: #2980B9" id="basic-addon1">Nombre</span>
+              <input type="text" class="form-control" id="nombreMedico"  placeholder="Nombre" aria-describedby="basic-addon1">
+            </div>
+
+            <div class="input-group">
+              <span class="input-group-addon"   style="width: 40%;background-color: #3498DB; color:#ECF0F1 ; border-color: #3498DB" id="basic-addon1">Apellido</span>
+              <input type="text" class="form-control" id="apellidoMedico" placeholder="Apellido" aria-describedby="basic-addon1">
+            </div>
+
+
+          </div>
+
+          <div class="col-md-6">
+
+
+          </div>
+
+          <button type="button" id="botonGuardarMedico" onclick="guardarMedico()" class="btn btn-primary" style="float: right; margin-right: 10%; margin-top: 10%; background-color: #2C3E50; border-color: #2C3E50; color: #ECF0F1">Guardar</button>
+
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+
+</div>
+
+<script type="text/javascript">
+
+        $( "#botonNuevoMedico" ).click(function() {
+                //alert("hola");
+
+                $("#tituloModal").text("Alta de Medico");
+
+                $('#error').hide();
+                $('#error').empty();
+                $("#idMedico").val(null);
+                $("#nombreMedico").val(null);
+                $("#apellidoMedico").val(null);
+                $("#matriculaMedico").val(null);
+        });
+
+</script>
