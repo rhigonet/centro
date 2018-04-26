@@ -41,8 +41,8 @@ En este prototipo se puede observar la vista del panel de gimnasio, cómo se mue
 
 ## Authors
 
-Ramiro Higonet Lang
-Santiago Figgini
-Dino Cisterna
-Lucas Pereyra
-Juan Franco Martin
+* Santiago Figgini
+* Dino Cisterna
+* Lucas Pereyra
+* Juan Franco Martin
+* Ramiro Higonet Lang
